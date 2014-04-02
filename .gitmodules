@@ -1,0 +1,3 @@
+[submodule "ext/libswift"]
+	path = ext/libswift
+	url = git@github.com:libswift/libswift.git
