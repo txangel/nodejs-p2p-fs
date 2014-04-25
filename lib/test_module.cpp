@@ -1,7 +1,16 @@
 #include <node.h>
+#include <v8.h>
 
-void RegisterModule(v8::Handle< v8::Object > target) {
+using namespace v8;
 
+Handle<Value> Method(const Arguments& args) {
+  HandleScope scope;
+  return scope.Close(String::New("world"));
 }
 
-NODE_MODULE(modulename, RegisterModule);
+void init(Handle<Object> exports) {
+  exports->Set(String::NewSymbol("hello"),
+      FunctionTemplate::New(Method)->GetFunction());
+}
+
+NODE_MODULE(test, init)
